@@ -20,7 +20,7 @@ static const int bar_height              = 0;   /* 0 means derive from font, >= 
 #define ICONSPACING 5  /* space between icon and title */
 /* Status is to be shown on: -1 (all monitors), 0 (a specific monitor by index), 'A' (active monitor) */
 static const int statusmon               = -1;
-static const int horizpadbar             = 2;   /* horizontal padding for statusbar */
+static const int horizpadbar             = 4;   /* horizontal padding for statusbar */
 static const int vertpadbar              = 0;   /* vertical padding for statusbar */
 static const unsigned int systrayspacing = 2;   /* systray spacing */
 static const int showsystray             = 1;   /* 0 means no systray */
@@ -29,11 +29,11 @@ static const int showsystray             = 1;   /* 0 means no systray */
 static int tagindicatortype              = INDICATOR_TOP_LEFT_SQUARE;
 static int tiledindicatortype            = INDICATOR_NONE;
 static int floatindicatortype            = INDICATOR_TOP_LEFT_SQUARE;
-static const char *fonts[]               = { "UbuntuMono Nerd Font:size=14:antialias=true:autohint=true",
-                                             "FontAwesome:size:14:antialias=true:autohint=true",
-                                             "JoyPixels:size=14:antialias=true:autohint=true"
+static const char *fonts[]               = { "UbuntuMono Nerd Font:size=15:antialias=true:autohint=true",
+                                             "FontAwesome:size:15:antialias=true:autohint=true",
+                                             "JoyPixels:size=15:antialias=true:autohint=true"
                                                              };
-static const char dmenufont[]            = "monospace:size=14";
+static const char dmenufont[]            = "monospace:size=15";
 
 static char c000000[]                    = "#000000"; // placeholder value
 
@@ -79,7 +79,7 @@ static char urgfloatcolor[]              = "#db8fd9";
 
 
 
-static const unsigned int baralpha = 0xd0;
+static const unsigned int baralpha = 0xE6;
 static const unsigned int borderalpha = OPAQUE;
 static const unsigned int alphas[][3] = {
 	/*                       fg      bg        border     */
@@ -187,11 +187,12 @@ static const Rule rules[] = {
 	RULE(.class = "Gimp", .tags = 1 << 4)
 	RULE(.class = "firefox", .tags = 2)
 	RULE(.class = "Emacs", .tags = 1)
-	RULE(.instance = "spterm", .tags = SPTAG(0), .isfloating = 1)
+	RULE(.class = "St", .isterminal = 1, .noswallow = 0)
+	RULE(.instance = "spterm", .tags = SPTAG(0), .isfloating = 1, .isterminal = 1, .noswallow = 0)
 	RULE(.instance = "sphtop", .tags = SPTAG(1), .isfloating = 1)
 	RULE(.instance = "spbtop", .tags = SPTAG(2), .isfloating = 1)
 	RULE(.instance = "spspot", .tags = SPTAG(3), .isfloating = 1)
-	RULE(.instance = "splfub", .tags = SPTAG(4), .isfloating = 1)
+	RULE(.instance = "splfub", .tags = SPTAG(4), .isfloating = 1, .isterminal = 1, .noswallow = 0)
 };
 
 static const MonitorRule monrules[] = {
@@ -347,7 +348,7 @@ static Key keys[] = {
 	{ MODKEY|ControlMask,           XK_period,     cyclelayout,            {.i = +1 } },
 	{ MODKEY,                       XK_e,          spawn,                  SHCMD("emacs") },
 	{ MODKEY,                       XK_w,          spawn,                  SHCMD("firefox") },
-	{ MODKEY,                       XK_x,          spawn,                  SHCMD("dm-logout") },
+	{ MODKEY,                       XK_x,          spawn,                  SHCMD("archlinux-logout") },
 	TAGKEYS(                        XK_ampersand,                                  0)
 	TAGKEYS(                        XK_eacute,                                     1)
 	TAGKEYS(                        XK_quotedbl,                                   2)
